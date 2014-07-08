@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.IO;
-using Json = MiniJSON;
+using MiniJSON;
 
 namespace UnityEditor.XCodeEditor 
 {
@@ -92,7 +92,7 @@ namespace UnityEditor.XCodeEditor
 			path = System.IO.Path.GetDirectoryName( filename );
 			
 			string contents = projectFileInfo.OpenText().ReadToEnd();
-			_datastore = (Hashtable)XMiniJSON.jsonDecode( contents );
+            _datastore = Json.Deserialize(contents) as Hashtable;
 			
 //			group = (string)_datastore["group"];
 //			patches = (ArrayList)_datastore["patches"];
