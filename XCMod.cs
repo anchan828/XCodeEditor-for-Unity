@@ -9,14 +9,6 @@ namespace UnityEditor.XCodeEditor
 {
     public class XCMod
     {
-        //		private string group;
-        //		private ArrayList patches;
-        //		private ArrayList libs;
-        //		private ArrayList frameworks;
-        //		private ArrayList headerpaths;
-        //		private ArrayList files;
-        //		private ArrayList folders;
-        //		private ArrayList excludes;
         private Dictionary<string, object> _datastore;
 
         public string name { get; private set; }
@@ -111,16 +103,6 @@ namespace UnityEditor.XCodeEditor
 
             string contents = File.ReadAllText(filename);
             _datastore = Json.Deserialize(contents) as Dictionary<string, object>;
-
-
-            //			group = (string)_datastore["group"];
-            //			patches = (ArrayList)_datastore["patches"];
-            //			libs = (ArrayList)_datastore["libs"];
-            //			frameworks = (ArrayList)_datastore["frameworks"];
-            //			headerpaths = (ArrayList)_datastore["headerpaths"];
-            //			files = (ArrayList)_datastore["files"];
-            //			folders = (ArrayList)_datastore["folders"];
-            //			excludes = (ArrayList)_datastore["excludes"];
         }
 
         List<string> ToCast(string key)
@@ -137,20 +119,6 @@ namespace UnityEditor.XCodeEditor
 
             return list;
         }
-
-        //	"group": "GameCenter",
-        //	"patches": [],
-        //	"libs": [],
-        //	"frameworks": ["GameKit.framework"],
-        //	"headerpaths": ["Editor/iOS/GameCenter/**"],					
-        //	"files":   ["Editor/iOS/GameCenter/GameCenterBinding.m",
-        //				"Editor/iOS/GameCenter/GameCenterController.h",
-        //				"Editor/iOS/GameCenter/GameCenterController.mm",
-        //				"Editor/iOS/GameCenter/GameCenterManager.h",
-        //				"Editor/iOS/GameCenter/GameCenterManager.m"],
-        //	"folders": [],	
-        //	"excludes": ["^.*\\.meta$", "^.*\\.mdown^", "^.*\\.pdf$"]
-
     }
 
     public class XCModFile
