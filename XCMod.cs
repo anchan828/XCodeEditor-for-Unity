@@ -42,7 +42,12 @@ namespace UnityEditor.XCodeEditor
         {
             get
             {
-                return ToCast("libs").Select(fileRef => new XCModFile(fileRef)).ToList();
+                var _libs = ToCast("libs").Select(fileRef => new XCModFile(fileRef)).ToList();
+
+                if(_libs.Count == 0)
+                    _libs.Add(new XCModFile(""));
+
+                return _libs;
             }
         }
 

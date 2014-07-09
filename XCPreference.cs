@@ -139,7 +139,7 @@ public class XCPreference : PopupWindowContent
 
         EditorGUILayout.BeginHorizontal();
 
-        EditorGUI.BeginDisabledGroup(!File.Exists(currentFolderPath + "global.projmods"));
+        EditorGUI.BeginDisabledGroup(!File.Exists(configPath));
         if (GUILayout.Button("Load"))
         {
             DeSerialize();
@@ -198,16 +198,14 @@ public class XCPreference : PopupWindowContent
         }
         dictionary.Add("buildSettings", _buildSettings);
 
-        File.WriteAllText(currentFolderPath + "global.projmods", Json.Serialize(dictionary));
+        File.WriteAllText(configPath, Json.Serialize(dictionary));
     }
 
     private static void DeSerialize()
     {
-        var global = currentFolderPath + "global.projmods";
+        if (!File.Exists(configPath)) return;
 
-        if (!File.Exists(global)) return;
-
-        var xcMod = new XCMod(global);
+        var xcMod = new XCMod(configPath);
 
         group = xcMod.group;
         frameworks = xcMod.frameworks;
@@ -257,8 +255,6 @@ public class XCPreference : PopupWindowContent
 
     public override void OnGUI(Rect rect)
     {
-        editorWindow.antiAlias = 4;
-
         if (canSelectFrameworks.Count == 0) return;
         popupScroll = EditorGUILayout.BeginScrollView(popupScroll);
         for (int i = 0; i < canSelectFrameworks.Count; i++)
@@ -345,12 +341,12 @@ public class XCPreference : PopupWindowContent
           "UIKit.framework",
     };
 
-    static string currentFolderPath
+    static string configPath
     {
         get
         {
             string currentFilePath = new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileName();
-            return "Assets" + currentFilePath.Substring(0, currentFilePath.LastIndexOf(Path.DirectorySeparatorChar) + 1).Replace(Application.dataPath.Replace("/", Path.DirectorySeparatorChar.ToString()), string.Empty).Replace("\\", "/");
+            return "Assets" + currentFilePath.Substring(0, currentFilePath.LastIndexOf(Path.DirectorySeparatorChar) + 1).Replace(Application.dataPath.Replace("/", Path.DirectorySeparatorChar.ToString()), string.Empty).Replace("\\", "/") + "config.projmods";
         }
     }
 }

@@ -27,7 +27,7 @@ public static class XCodePostProcess
     public static void OnPostProcessBuild( BuildTarget target, string path )
     {
         // Create a new project object from build target
-        XCodeEditor.XCProject project = new XCodeEditor.XCProject( targetPath );
+        XCodeEditor.XCProject project = new XCodeEditor.XCProject( path );
 
         // Find and run through all projmods files to patch the project
         var files = System.IO.Directory.GetFiles( Application.dataPath, "*.projmods", SearchOption.AllDirectories );
