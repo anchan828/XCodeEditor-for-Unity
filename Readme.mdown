@@ -45,17 +45,18 @@ The projmods file is a simple text file containing a JSON object. It will be use
 
 ```json
 {
-    "group":       "GameCenter",
-    "libs":        [],
-    "frameworks":  ["GameKit.framework"],
-    "headerpaths": ["Editor/iOS/GameCenter/**"],
-    "files":       ["Editor/iOS/GameCenter/GameCenterBinding.m",
-                    "Editor/iOS/GameCenter/GameCenterController.h",
-                    "Editor/iOS/GameCenter/GameCenterController.mm",
-                    "Editor/iOS/GameCenter/GameCenterManager.h",
-                    "Editor/iOS/GameCenter/GameCenterManager.m"],
-    "folders":     [],
-    "excludes":    ["^.*.meta$", "^.*.mdown^", "^.*.pdf$"]
+    "group": "Services",
+    "libs": ["libsqlite3.dylib"],
+    "frameworks": ["MessageUI.framework","StoreKit.framework","iAd.framework","CoreData.framework","SystemConfiguration.framework","Social.framework:","Security.framework:","Accounts.framework:","AdSupport.framework:"],
+    "headerpaths": [],                    
+    "files": ["/Users/beannt/Documents/FacebookSDK/FacebookSDK.framework", "/Users/beannt/Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle"],
+    "folders": ["iOS/Store/","iOS/GoogleAnalytics/"],
+    "excludes": ["^.*.DS_Store$","^.*.meta$", "^.*.mdown^", "^.*.pdf$", "^.*.svn$"],
+    "buildSettings": { 
+    	"GCC_ENABLE_CPP_EXCEPTIONS": "YES",
+    	"GCC_ENABLE_OBJC_EXCEPTIONS": "YES",
+    	"OTHER_LDFLAGS" : ["-ObjC"]
+    }
 }
 ```
 
